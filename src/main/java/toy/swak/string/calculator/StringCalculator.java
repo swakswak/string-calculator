@@ -3,7 +3,7 @@ package toy.swak.string.calculator;
 import java.util.Arrays;
 
 /**
- * @author hyoseok.choi (hyoseok.choi@sdt.inc)
+ * @author hyoseok.choi (hschoi0702@gmail.com)
  **/
 class StringCalculator {
     // TODO: 리팩토링 필요

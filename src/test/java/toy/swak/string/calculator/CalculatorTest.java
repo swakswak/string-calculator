@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * @author hyoseok.choi (hschoi0702@gmail.com)
+ **/
 class CalculatorTest {
     @Test
     void stringCalculatorTest() {
