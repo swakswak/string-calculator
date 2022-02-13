@@ -6,20 +6,47 @@ import java.util.Arrays;
  * @author hyoseok.choi (hschoi0702@gmail.com)
  **/
 class StringCalculator {
-    // TODO: 리팩토링 필요
-    public int convertAndSum(String string) {
-        if (string == null || "".equals(string.replace(" ", ""))) {
+    public int convertAndSum(String stringValue) {
+        if (this.isBlank(stringValue)) {
             return 0;
-        } else {
-            String[] split = string.replace(" ", "").split("[,:]");
-            if (Arrays.asList(split).contains("")) {
-                throw new NumberFormatException();
-            }
-            int result = 0;
-            for (String beforeConvert : split) {
-                result += Integer.parseInt(beforeConvert);
-            }
-            return result;
         }
+
+        String[] split = this.split(stringValue);
+        return this.sum(split);
+    }
+
+
+    private boolean isBlank(String stringValue) {
+        return stringValue == null || "".equals(stringValue.replace(" ", ""));
+    }
+
+    private String[] split(String stringValue) {
+        return stringValue.replace(" ", "").split("[,:]");
+    }
+
+    private boolean isValid(String[] strings) {
+        // TODO: Predicate 내부 다시 점검
+        return Arrays.stream(strings)
+                .anyMatch(string -> !this.isBlank(string) && this.isPositiveNumber(string));
+    }
+
+    private boolean isPositiveNumber(String stringValue) {
+        try {
+            return Integer.parseInt(stringValue) > 0;
+        } catch (NumberFormatException exception) {
+            return false;
+        }
+    }
+
+    private int sum(String[] intStrings) {
+        if (!this.isValid(intStrings)) {
+            throw new IllegalArgumentException();
+        }
+        int result = 0;
+        for (String beforeConvert : intStrings) {
+            result += Integer.parseInt(beforeConvert);
+        }
+
+        return result;
     }
 }
