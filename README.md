@@ -9,8 +9,9 @@
     - ""          ->  0
     - null        ->  0
     - "1,2"       ->  3
-    - "1,2;3"     ->  6
-    - "1, 2;3"    ->  6
-    - "1,,2;;3"   ->  NumberFormatException
-    - "1,a;3"     ->  NumberFormatException
+    - "1,2,3"     ->  6
+    - "1, 2,3"    ->  6
+    - "1,,2,,3"   ->  Exception
+    - "1,a,3"     ->  Exception
+    - "-1,2,3"    ->  Exception
 ```
