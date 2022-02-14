@@ -21,13 +21,12 @@ class StringCalculator {
     }
 
     private String[] split(String stringValue) {
-        return stringValue.replace(" ", "").split("[,:]");
+        return stringValue.replace(" ", "").split("[,]");
     }
 
     private boolean isValid(String[] strings) {
-        // TODO: Predicate 내부 다시 점검
         return Arrays.stream(strings)
-                .anyMatch(string -> !this.isBlank(string) && this.isPositiveNumber(string));
+                .allMatch(string -> !this.isBlank(string) && this.isPositiveNumber(string));
     }
 
     private boolean isPositiveNumber(String stringValue) {
