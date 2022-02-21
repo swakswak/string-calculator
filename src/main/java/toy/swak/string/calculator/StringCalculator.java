@@ -11,17 +11,12 @@ class StringCalculator {
             return 0;
         }
 
-        String[] split = this.split(stringValue);
-        return this.sum(split);
+        return this.sum(this.toIntValues(this.split(stringValue)));
     }
 
-
-    private boolean isBlank(String stringValue) {
-        return stringValue == null || "".equals(stringValue.replace(" ", ""));
-    }
 
     private String[] split(String stringValue) {
-        return stringValue.replace(" ", "").split("[,]");
+        return stringValue.replace(" ", "").split(",");
     }
 
     private boolean isValid(String[] strings) {
@@ -37,13 +32,27 @@ class StringCalculator {
         }
     }
 
-    private int sum(String[] intStrings) {
-        if (!this.isValid(intStrings)) {
+    private boolean isBlank(String stringValue) {
+        return stringValue == null || "".equals(stringValue.replace(" ", ""));
+    }
+
+    private int[] toIntValues(String[] strings) {
+        if (!this.isValid(strings)) {
             throw new IllegalArgumentException();
         }
+
+        int[] intValues = new int[strings.length];
+        for (int stringsIndex = 0; stringsIndex < strings.length; stringsIndex++) {
+            intValues[stringsIndex] = Integer.parseInt(strings[stringsIndex]);
+        }
+
+        return intValues;
+    }
+
+    private int sum(int[] intValues) {
         int result = 0;
-        for (String beforeConvert : intStrings) {
-            result += Integer.parseInt(beforeConvert);
+        for (int intValue : intValues) {
+            result += intValue;
         }
 
         return result;
